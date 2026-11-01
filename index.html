@@ -1,13 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simpleWebApp</title>
+    <title>Ada Vega — Design Engineer</title>
+    <meta name="description" content="Ada Vega is a design engineer building at the intersection of systems thinking and craft.">
+    <meta property="og:title" content="Ada Vega — Design Engineer">
+    <meta property="og:description" content="Building at the intersection of systems thinking and craft.">
+    <meta name="theme-color" content="#0b0e1a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;1,400&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to simpleWebApp</h1>
+    <!-- Skip link -->
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" aria-hidden="true"><div class="progress-bar__fill" id="progressFill"></div></div>
+
+    <!-- Fixed header -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="#" class="header__wordmark">Ada Vega</a>
+            <nav class="header__nav" aria-label="Section navigation">
+                <a href="#about" class="header__link" data-section="about">About</a>
+                <a href="#work" class="header__link" data-section="work">Work</a>
+                <a href="#writing" class="header__link" data-section="writing">Writing</a>
+                <a href="#experience" class="header__link" data-section="experience">Experience</a>
+                <a href="#contact" class="header__link header__link--cta" data-section="contact">Contact</a>
+            </nav>
+            <button class="header__toggle" aria-label="Menu" id="navToggle" hidden>
+                <span class="header__toggle-bar"></span>
+                <span class="header__toggle-bar"></span>
+                <span class="header__toggle-bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Fixed decorative launch scene -->
+    <div class="scene" id="scene" aria-hidden="true">
+        <!-- Deep stars -->
+        <div class="scene__stars scene__stars--deep" id="starsDeep">
+            <svg width="1440" height="900" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+                <circle cx="120" cy="80" r="1.2" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="340" cy="150" r="0.8" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="560" cy="60" r="1" fill="rgba(255,255,255,0.25)"/>
+                <circle cx="780" cy="200" r="0.7" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="1010" cy="90" r="1.1" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="1220" cy="170" r="0.9" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="1350" cy="50" r="0.6" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="200" cy="300" r="0.8" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="450" cy="380" r="1" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="700" cy="350" r="0.7" fill="rgba(255,255,255,0.25)"/>
+                <circle cx="950" cy="420" r="0.9" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="1180" cy="310" r="0.6" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="1380" cy="400" r="1.2" fill="rgba(255,255,255,0.2)"/>
+            </svg>
+        </div>
+        <!-- Near stars (brighter, parallax) -->
+        <div class="scene__stars scene__stars--near" id="starsNear">
+            <svg width="1440" height="900" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+                <circle cx="180" cy="120" r="1.8" fill="rgba(255,255,240,0.5)"/>
+                <circle cx="420" cy="70" r="1.5" fill="rgba(255,255,240,0.4)"/>
+                <circle cx="640" cy="180" r="1.4" fill="rgba(255,255,240,0.45)"/>
+                <circle cx="870" cy="110" r="1.7" fill="rgba(255,255,240,0.35)"/>
+                <circle cx="1060" cy="240" r="1.3" fill="rgba(255,255,240,0.5)"/>
+                <circle cx="1280" cy="130" r="1.6" fill="rgba(255,255,240,0.4)"/>
+                <circle cx="300" cy="260" r="1.5" fill="rgba(255,255,240,0.35)"/>
+                <circle cx="550" cy="310" r="1.3" fill="rgba(255,255,240,0.45)"/>
+                <circle cx="810" cy="280" r="1.6" fill="rgba(255,255,240,0.4)"/>
+                <circle cx="1100" cy="360" r="1.4" fill="rgba(255,255,240,0.35)"/>
+            </svg>
+        </div>
+        <!-- Moon -->
+        <div class="scene__moon" id="moon">
+            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+                <circle cx="90" cy="90" r="86" fill="#e8e4d8" stroke="#c4baa0" stroke-width="2"/>
+                <circle cx="68" cy="74" r="12" fill="#d8d2c0" opacity="0.5"/>
+                <circle cx="110" cy="100" r="8" fill="#d8d2c0" opacity="0.4"/>
+                <circle cx="86" cy="116" r="6" fill="#d8d2c0" opacity="0.3"/>
+                <circle cx="120" cy="68" r="5" fill="#d8d2c0" opacity="0.35"/>
+            </svg>
+        </div>
+        <!-- Dusk horizon gradient overlay -->
+        <div class="scene__dusk" id="dusk"></div>
+        <!-- Clouds -->
+        <div class="scene__clouds" id="clouds">
+            <svg width="1440" height="300" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" fill="#c4b8a8" opacity="0.3">
+                <ellipse cx="200" cy="160" rx="120" ry="40"/>
+                <ellipse cx="380" cy="120" rx="160" ry="50"/>
+                <ellipse cx="600" cy="140" rx="100" ry="35"/>
+                <ellipse cx="800" cy="100" rx="140" ry="45"/>
+                <ellipse cx="1050" cy="130" rx="110" ry="38"/>
+                <ellipse cx="1280" cy="150" rx="130" ry="42"/>
+            </svg>
+        </div>
+        <!-- Ground / terrain -->
+        <div class="scene__ground" id="ground">
+            <svg width="1440" height="240" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" fill="#2a251e">
+                <path d="M0 180 Q60 140 140 170 Q220 190 300 160 Q380 130 460 155 Q540 180 620 150 Q700 120 780 145 Q860 170 940 140 Q1020 110 1100 135 Q1180 160 1260 125 Q1340 90 1440 110 L1440 240 L0 240 Z"/>
+                <path d="M0 200 Q100 170 200 190 Q300 210 400 180 Q500 150 600 175 Q700 200 800 170 Q900 140 1000 165 Q1100 190 1200 160 Q1300 130 1440 155 L1440 240 L0 240 Z" fill="#1e1a14"/>
+            </svg>
+        </div>
+        <!-- Launchpad -->
+        <div class="scene__pad" id="pad">
+            <svg width="80" height="100" viewBox="0 0 80 100">
+                <rect x="10" y="70" width="60" height="8" rx="2" fill="#6b5e4e"/>
+                <rect x="20" y="78" width="8" height="22" fill="#5a4e40"/>
+                <rect x="52" y="78" width="8" height="22" fill="#5a4e40"/>
+                <rect x="8" y="56" width="64" height="6" rx="1" fill="#7a6e5e"/>
+                <rect x="36" y="36" width="8" height="20" fill="#6b5e4e"/>
+            </svg>
+        </div>
+        <!-- Gantry tower -->
+        <div class="scene__gantry" id="gantry">
+            <svg width="30" height="140" viewBox="0 0 30 140">
+                <line x1="4" y1="0" x2="4" y2="110" stroke="#7a8a8a" stroke-width="2"/>
+                <line x1="26" y1="0" x2="26" y2="110" stroke="#7a8a8a" stroke-width="2"/>
+                <line x1="4" y1="20" x2="26" y2="20" stroke="#7a8a8a" stroke-width="1.5"/>
+                <line x1="4" y1="45" x2="26" y2="45" stroke="#7a8a8a" stroke-width="1.5"/>
+                <line x1="4" y1="70" x2="26" y2="70" stroke="#7a8a8a" stroke-width="1.5"/>
+                <line x1="4" y1="95" x2="26" y2="95" stroke="#7a8a8a" stroke-width="1.5"/>
+                <line x1="15" y1="0" x2="15" y2="110" stroke="#7a8a8a" stroke-width="1" opacity="0.5"/>
+                <line x1="0" y1="110" x2="30" y2="110" stroke="#6b5e4e" stroke-width="3"/>
+            </svg>
+        </div>
+        <!-- Trajectory SVG overlay -->
+        <svg class="scene__trajectory" id="trajectory" width="1440" height="900"
+             viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+             aria-hidden="true">
+            <!-- Dotted full route -->
+            <path id="trajectoryFull" stroke="rgba(255,255,255,0.2)" stroke-width="2"
+                  stroke-dasharray="4 8" fill="none" />
+            <!-- Solid travelled trail -->
+            <path id="trajectoryTravelled" stroke="rgba(255,200,100,0.7)" stroke-width="3"
+                  stroke-dasharray="2000" stroke-dashoffset="2000" fill="none"
+                  stroke-linecap="round" />
+        </svg>
+        <!-- Rocket -->
+        <div class="scene__rocket" id="rocket" aria-hidden="true">
+            <div class="rocket__body">
+                <svg width="40" height="70" viewBox="0 0 40 70">
+                    <!-- Nose cone -->
+                    <path d="M20 0 Q12 18 10 30 L10 50 Q10 56 20 56 Q30 56 30 50 L30 30 Q28 18 20 0Z" fill="#e8e4d8" stroke="#c4baa0" stroke-width="1"/>
+                    <!-- Window -->
+                    <circle cx="20" cy="26" r="4" fill="#8ab8d4" stroke="#c4baa0" stroke-width="0.8"/>
+                    <circle cx="19" cy="25" r="1.5" fill="rgba(255,255,255,0.3)"/>
+                    <!-- Fuselage stripe -->
+                    <rect x="10" y="38" width="20" height="3" rx="1" fill="#d4553a"/>
+                    <!-- Fins -->
+                    <path d="M10 44 L4 58 L10 54Z" fill="#d4553a" stroke="#b8452e" stroke-width="0.5"/>
+                    <path d="M30 44 L36 58 L30 54Z" fill="#d4553a" stroke="#b8452e" stroke-width="0.5"/>
+                    <!-- Flame -->
+                    <path id="rocketFlame" d="M14 56 Q20 72 26 56" fill="none" stroke="#f5a623" stroke-width="2" opacity="0">
+                        <animate attributeName="d" values="M14 56 Q20 72 26 56;M14 56 Q20 76 26 56;M14 56 Q20 72 26 56" dur="0.3s" repeatCount="indefinite"/>
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission telemetry (hidden below 900px) -->
+    <div class="telemetry" id="telemetry" aria-hidden="true">
+        <div class="telemetry__item"><span class="telemetry__label">PHASE</span><span class="telemetry__value" id="phaseVal">PRE-LAUNCH</span></div>
+        <div class="telemetry__item"><span class="telemetry__label">ALT</span><span class="telemetry__value" id="altVal">0 km</span></div>
+        <div class="telemetry__item"><span class="telemetry__label">VEL</span><span class="telemetry__value" id="velVal">0 m/s</span></div>
+    </div>
+
+    <!-- Main content -->
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Ada Vega</h1>
+                <p class="hero__subtitle">Design Engineer</p>
+                <p class="hero__pitch">Building at the intersection of systems thinking and craft.</p>
+                <p class="hero__cue">↓ Scroll to launch</p>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="card-section" id="about">
+            <div class="card">
+                <h2 class="card__title">About</h2>
+                <p class="card__body">Ada is a design engineer with a decade of experience turning complex problems into clear, human interfaces. She believes the best systems are invisible — they get out of the way and let the work speak.</p>
+                <div class="card__stats">
+                    <div class="stat"><span class="stat__value">10+</span><span class="stat__label">Years shipping</span></div>
+                    <div class="stat"><span class="stat__value">12</span><span class="stat__label">Major projects</span></div>
+                    <div class="stat"><span class="stat__value">4</span><span class="stat__label">Startups</span></div>
+                    <div class="stat"><span class="stat__value">∞</span><span class="stat__label">Cups of coffee</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work -->
+        <section class="card-section" id="work">
+            <div class="card">
+                <h2 class="card__title">Selected work</h2>
+                <div class="card__entries">
+                    <article class="entry">
+                        <h3 class="entry__title">Constellation · <span class="entry__year">2025</span></h3>
+                        <p class="entry__desc">A design system for space-mission control interfaces. Spans 42 components, 6 interaction patterns, and a token pipeline.</p>
+                        <p class="entry__tech">React · TypeScript · Storybook · Figma</p>
+                        <a href="https://example.com/constellation" class="entry__link" target="_blank" rel="noopener">View project →</a>
+                    </article>
+                    <article class="entry">
+                        <h3 class="entry__title">Orbit · <span class="entry__year">2024</span></h3>
+                        <p class="entry__desc">Real-time satellite tracking dashboard used by mission operators across three ground stations.</p>
+                        <p class="entry__tech">Svelte · D3 · WebSocket · Python</p>
+                        <a href="https://example.com/orbit" class="entry__link" target="_blank" rel="noopener">View project →</a>
+                    </article>
+                    <article class="entry">
+                        <h3 class="entry__title">Pulsar · <span class="entry__year">2023</span></h3>
+                        <p class="entry__desc">Accessible data-table library handling 100k-row datasets with virtual scrolling and full keyboard navigation.</p>
+                        <p class="entry__tech">Web Components · Lit · Vitest</p>
+                        <a href="https://example.com/pulsar" class="entry__link" target="_blank" rel="noopener">View project →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Writing -->
+        <section class="card-section" id="writing">
+            <div class="card">
+                <h2 class="card__title">Writing</h2>
+                <div class="card__entries">
+                    <article class="entry">
+                        <h3 class="entry__title"><a href="https://example.com/writing/design-systems-are-products" target="_blank" rel="noopener">Design systems are products, not projects</a></h3>
+                        <p class="entry__meta">May 2025 · 8 min read</p>
+                        <p class="entry__desc">Why treating your design system as a product with users, roadmaps, and KPIs is the only way to make it last.</p>
+                    </article>
+                    <article class="entry">
+                        <h3 class="entry__title"><a href="https://example.com/writing/scroll-driven-animation" target="_blank" rel="noopener">Scroll-driven animation without the framework</a></h3>
+                        <p class="entry__meta">Mar 2025 · 12 min read</p>
+                        <p class="entry__desc">A plain-TypeScript approach to narrative scroll with measured anchors, cubic Bézier trajectories, and rAF loops.</p>
+                    </article>
+                    <article class="entry">
+                        <h3 class="entry__title"><a href="https://example.com/writing/accessible-charts" target="_blank" rel="noopener">Making charts work for everyone</a></h3>
+                        <p class="entry__meta">Jan 2025 · 10 min read</p>
+                        <p class="entry__desc">Data visualisation accessibility beyond colour contrast — screen-reader tables, keyboard interactions, and reduced motion.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="card-section" id="experience">
+            <div class="card">
+                <h2 class="card__title">Experience</h2>
+                <div class="card__entries">
+                    <div class="entry entry--timeline">
+                        <div class="entry__title">Staff Design Engineer · <span class="entry__company">Nova Systems</span></div>
+                        <p class="entry__meta">2023 – present</p>
+                        <p class="entry__desc">Leading the design system and platform team. Established component architecture, design review practice, and accessibility guild.</p>
+                    </div>
+                    <div class="entry entry--timeline">
+                        <div class="entry__title">Senior front-end engineer · <span class="entry__company">Beacon Labs</span></div>
+                        <p class="entry__meta">2020 – 2023</p>
+                        <p class="entry__desc">Built and shipped the customer-facing dashboard serving 50k+ daily active users. Introduced end-to-end testing and performance budgeting.</p>
+                    </div>
+                    <div class="entry entry--timeline">
+                        <div class="entry__title">Front-end engineer · <span class="entry__company">Rocket Science</span></div>
+                        <p class="entry__meta">2018 – 2020</p>
+                        <p class="entry__desc">Front-end for the mission-planning tool used by small-sat operators. Real-time collaborative editing and WebGL trajectory visualisation.</p>
+                    </div>
+                    <div class="entry entry--timeline">
+                        <div class="entry__title">Junior developer · <span class="entry__company">Helix Digital</span></div>
+                        <p class="entry__meta">2015 – 2018</p>
+                        <p class="entry__desc">Full-stack development across client projects. Built responsive sites, REST APIs, and the internal component library.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="card-section" id="contact">
+            <div class="card">
+                <h2 class="card__title">Contact</h2>
+                <p class="card__body">You have reached the moon. Let's start the next mission.</p>
+                <a href="mailto:ada@example.com" class="card__cta">ada@example.com</a>
+                <div class="card__links">
+                    <a href="https://github.com/example" target="_blank" rel="noopener" aria-label="GitHub profile">GitHub</a>
+                    <a href="https://linkedin.com/in/example" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a>
+                    <a href="https://bsky.app/profile/example" target="_blank" rel="noopener" aria-label="Bluesky profile">Bluesky</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <p class="footer__text">You have reached the moon. <a href="#" class="footer__back">Back to launch →</a></p>
+        </div>
+    </footer>
+
     <script src="dist/index.js"></script>
 </body>
 </html>
